@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Táper · Plan 1.200 kcal</title>
+<meta name="description" content="Tu plan de 1.200 kcal barato: qué comer hoy, batch cooking del domingo, lista de la compra automática y progreso de peso.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Táper">
+<meta name="theme-color" content="#f4f2ec" id="meta-theme">
+<link rel="apple-touch-icon" id="apple-icon" href="">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%231d7a50'/%3E%3Crect x='14' y='26' width='36' height='22' rx='6' fill='none' stroke='white' stroke-width='4'/%3E%3Cpath d='M12 26h40' stroke='white' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M28 19h8' stroke='white' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f4f2ec;--bgT:rgba(244,242,236,.86);--card:#fff;--ink:#191c1a;--ink2:#3a3f3b;--muted:#737a74;--line:#e8e4da;--soft:#f0ede5;--soft2:#e7e3d8;
+  --g:#1d7a50;--g2:#2a9d66;--gs:#e1f1e7;--o:#e0700c;--os:#fcecda;--b:#2d6ad4;--bs:#e4ecfb;--r:#d0453f;--rs:#fbe5e3;--y:#b98a04;--ys:#fbf2d4;
+  --sh:0 1px 2px rgba(25,28,26,.04),0 6px 20px rgba(25,28,26,.05);--navbg:rgba(255,255,255,.9);color-scheme:light;
+}
+[data-theme=dark]{
+  --bg:#0d100f;--bgT:rgba(13,16,15,.86);--card:#161a18;--ink:#eef1ee;--ink2:#c9cfca;--muted:#8f9892;--line:#232926;--soft:#1d2320;--soft2:#262d29;
+  --g:#3fcf88;--g2:#2fb673;--gs:rgba(63,207,136,.13);--o:#ff9d45;--os:rgba(255,157,69,.13);--b:#6ea8ff;--bs:rgba(110,168,255,.13);--r:#ff7a72;--rs:rgba(255,122,114,.13);--y:#f1c84b;--ys:rgba(241,200,75,.13);
+  --sh:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25);--navbg:rgba(22,26,24,.9);color-scheme:dark;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font-family:"Plus Jakarta Sans",-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.45;font-size:15px;transition:background .25s}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+input{font:inherit;color:inherit}
+svg.i{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.sm svg.i,svg.i.sm{width:16px;height:16px}
+.wrap{max-width:560px;margin:0 auto;padding:0 16px calc(120px + env(safe-area-inset-bottom))}
+.num{font-variant-numeric:tabular-nums}
+
+/* Top */
+.top{position:sticky;top:0;z-index:30;background:var(--bgT);backdrop-filter:saturate(160%) blur(16px);-webkit-backdrop-filter:saturate(160%) blur(16px);padding:calc(10px + env(safe-area-inset-top)) 0 10px;margin:0 -16px 6px;padding-left:16px;padding-right:16px}
+.top-in{display:flex;align-items:center;justify-content:space-between;gap:12px;max-width:528px;margin:0 auto}
+.brand{display:flex;align-items:center;gap:11px}
+.logo{width:38px;height:38px;border-radius:12px;background:linear-gradient(140deg,var(--g),var(--g2));display:grid;place-items:center;color:#fff;box-shadow:0 4px 12px rgba(29,122,80,.28)}
+.logo svg{width:22px;height:22px}
+.brand h1{margin:0;font-size:19px;font-weight:800;letter-spacing:-.02em;line-height:1.1}
+.brand p{margin:1px 0 0;font-size:12.5px;color:var(--muted);font-weight:600}
+.ibtn{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:var(--card);box-shadow:var(--sh);color:var(--ink2)}
+.ibtn:active{transform:scale(.95)}
+.tops{display:flex;gap:8px}
+
+/* Generic */
+.card{background:var(--card);border-radius:22px;box-shadow:var(--sh);padding:16px;margin-bottom:12px}
+.sec{display:flex;align-items:center;justify-content:space-between;margin:22px 4px 10px}
+.sec h2{margin:0;font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.sec .lnk{font-size:13.5px;font-weight:700;color:var(--g)}
+.chip{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 12px;border-radius:999px;background:var(--soft);font-size:13px;font-weight:700;color:var(--ink2);white-space:nowrap}
+.chip.on{background:var(--os);color:var(--o)}
+.chip.g{background:var(--gs);color:var(--g)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;height:44px;padding:0 18px;border-radius:14px;font-weight:750;font-size:14.5px;background:var(--g);color:#fff}
+[data-theme=dark] .btn{color:#06210f}
+.btn.ghost{background:var(--soft);color:var(--ink)}
+.btn:active{transform:scale(.97)}
+.seg{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;background:var(--soft2);border-radius:14px;padding:4px;gap:4px;margin-bottom:12px}
+.seg button{height:36px;border-radius:10px;font-size:13.5px;font-weight:700;color:var(--muted);transition:all .15s}
+.seg button.on{background:var(--card);color:var(--ink);box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.muted{color:var(--muted)}
+.empty{padding:22px;text-align:center;color:var(--muted);font-size:14px}
+.view{display:none;animation:fade .25s ease}
+.view.on{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* Day nav + strip */
+.daynav{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:4px 0 12px}
+.daynav .lbl{text-align:center;flex:1}
+.eyebrow{font-size:12px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--g)}
+.dtitle{font-size:19px;font-weight:800;letter-spacing:-.02em;text-transform:capitalize}
+.strip{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-bottom:14px}
+.sd{display:flex;flex-direction:column;align-items:center;gap:5px;padding:8px 0 9px;border-radius:15px;background:var(--card);box-shadow:var(--sh);transition:all .15s}
+.sd small{font-size:11.5px;font-weight:700;color:var(--muted)}
+.sd b{font-size:15px;font-weight:800}
+.sd i{width:6px;height:6px;border-radius:50%;background:var(--soft2)}
+.sd.part i{background:var(--o)}
+.sd.full i{background:var(--g)}
+.sd.today b{color:var(--g)}
+.sd.sel{background:var(--ink);color:var(--bg)}
+.sd.sel small{color:var(--bg);opacity:.7}
+.sd.sel b{color:var(--bg)}
+
+/* Summary */
+.hero{background:linear-gradient(150deg,var(--g) 0%,var(--g2) 100%);color:#fff;border-radius:26px;padding:18px;margin-bottom:12px;position:relative;overflow:hidden;box-shadow:0 10px 30px rgba(29,122,80,.25)}
+[data-theme=dark] .hero{background:linear-gradient(150deg,#14553a 0%,#1d7a50 100%)}
+.hero:before{content:"";position:absolute;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,.07);right:-70px;top:-90px}
+.hero:after{content:"";position:absolute;width:140px;height:140px;border-radius:50%;background:rgba(255,255,255,.05);left:-50px;bottom:-70px}
+.sum{display:flex;align-items:center;gap:18px;position:relative;z-index:1}
+.ring{position:relative;width:118px;height:118px;flex-shrink:0}
+.ring svg{width:118px;height:118px;transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:10}
+.ring .rt{stroke:rgba(255,255,255,.18)}
+.ring .rv{stroke:#fff;stroke-linecap:round;transition:stroke-dashoffset .6s cubic-bezier(.2,.9,.3,1)}
+.rc{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.rc b{font-size:26px;font-weight:800;letter-spacing:-.03em;line-height:1}
+.rc span{font-size:11.5px;font-weight:600;opacity:.85;margin-top:3px}
+.macros{flex:1;display:flex;flex-direction:column;gap:8px;min-width:0}
+.mrow .mt{display:flex;justify-content:space-between;font-size:12px;font-weight:600;margin-bottom:4px;opacity:.95}
+.mrow .mt b{font-weight:800}
+.bar{height:6px;border-radius:9px;background:rgba(255,255,255,.18);overflow:hidden}
+.bar i{display:block;height:100%;border-radius:9px;background:#fff;transition:width .5s}
+.hero-foot{display:flex;gap:8px;margin-top:16px;position:relative;z-index:1;flex-wrap:wrap}
+.hchip{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 12px;border-radius:999px;background:rgba(255,255,255,.16);font-size:12.5px;font-weight:700;color:#fff}
+.hchip.on{background:#fff;color:var(--g)}
+[data-theme=dark] .hchip.on{color:#14553a}
+
+/* Meals */
+.meal{background:var(--card);border-radius:22px;box-shadow:var(--sh);margin-bottom:10px;overflow:hidden;transition:box-shadow .2s}
+.meal.now{box-shadow:0 0 0 2px var(--g),var(--sh)}
+.mh{display:flex;align-items:center;gap:13px;padding:14px 14px 14px 14px;cursor:pointer}
+.mic{width:46px;height:46px;border-radius:15px;display:grid;place-items:center;flex-shrink:0}
+.mic svg{width:22px;height:22px}
+.c-o{background:var(--os);color:var(--o)}.c-r{background:var(--rs);color:var(--r)}.c-g{background:var(--gs);color:var(--g)}.c-b{background:var(--bs);color:var(--b)}
+.mt2{flex:1;min-width:0}
+.mslot{font-size:12px;font-weight:700;color:var(--muted);display:flex;align-items:center;gap:6px}
+.badge{font-size:10.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:2px 7px;border-radius:6px;background:var(--g);color:#fff}
+[data-theme=dark] .badge{color:#06210f}
+.mname{font-size:15.5px;font-weight:750;letter-spacing:-.01em;line-height:1.25;margin-top:2px}
+.mmeta{font-size:12.5px;color:var(--muted);font-weight:600;margin-top:2px}
+.meal.done .mname{color:var(--muted);text-decoration:line-through;text-decoration-thickness:1.5px}
+.chk{width:40px;height:40px;border-radius:50%;border:2px solid var(--soft2);display:grid;place-items:center;color:transparent;flex-shrink:0;transition:all .2s cubic-bezier(.3,1.5,.6,1)}
+.chk svg{width:20px;height:20px;stroke-width:3}
+.meal.done .chk{background:var(--g);border-color:var(--g);color:#fff;transform:scale(1.04)}
+[data-theme=dark] .meal.done .chk{color:#06210f}
+.mb{padding:0 16px 16px;border-top:1px solid var(--line);animation:fade .2s}
+.opts{display:flex;gap:6px;overflow-x:auto;padding:14px 0 2px;scrollbar-width:none;margin:0 -2px}
+.opts::-webkit-scrollbar{display:none}
+.opt{flex-shrink:0;height:34px;padding:0 13px;border-radius:11px;background:var(--soft);font-size:13px;font-weight:700;color:var(--ink2)}
+.opt.on{background:var(--ink);color:var(--bg)}
+.lbl{font-size:11.5px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin:16px 0 8px;display:flex;align-items:center;justify-content:space-between}
+.itab{border-radius:14px;background:var(--soft);padding:4px 12px}
+.ir{display:grid;grid-template-columns:1fr auto;gap:2px 10px;padding:9px 0;border-bottom:1px solid var(--line)}
+.ir:last-child{border-bottom:0}
+.ir .n{font-weight:650;font-size:14px}
+.ir .g{font-weight:800;font-size:14px;text-align:right}
+.ir .h{grid-column:1/-1;font-size:12.5px;color:var(--muted);font-weight:500}
+.how{margin:0;padding:0;list-style:none;counter-reset:s}
+.how li{counter-increment:s;position:relative;padding:0 0 10px 34px;font-size:14px;color:var(--ink2)}
+.how li:before{content:counter(s);position:absolute;left:0;top:0;width:23px;height:23px;border-radius:8px;background:var(--soft);font-size:12px;font-weight:800;display:grid;place-items:center;color:var(--ink)}
+.extra{margin-top:4px;padding:9px 12px;border-radius:12px;background:var(--os);color:var(--o);font-size:13px;font-weight:700}
+.mf{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-top:12px}
+.mac{display:flex;gap:6px}
+.mac span{font-size:12px;font-weight:700;padding:5px 9px;border-radius:9px;background:var(--soft);color:var(--ink2)}
+.tbtn{display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:11px;background:var(--os);color:var(--o);font-size:13px;font-weight:750}
+
+/* Reminder + water */
+.rem{display:flex;align-items:center;gap:13px}
+.rem .mic{width:44px;height:44px}
+.rem p{margin:0;font-size:14px;color:var(--ink2);flex:1}
+.rem p b{color:var(--ink)}
+.rbtn{height:38px;padding:0 13px;border-radius:12px;background:var(--bs);color:var(--b);font-size:13px;font-weight:750;white-space:nowrap;flex-shrink:0}
+.rbtn.ok{background:var(--gs);color:var(--g)}
+.water{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+.water h4{margin:0;font-size:15px;font-weight:750}
+.water small{font-size:12.5px;color:var(--muted);font-weight:600}
+.glasses{display:grid;grid-template-columns:repeat(8,1fr);gap:5px;margin-top:12px}
+.gl{height:38px;border-radius:10px;background:var(--soft);display:grid;place-items:center;color:var(--soft2);transition:all .15s}
+.gl svg{width:16px;height:16px}
+.gl.on{background:var(--bs);color:var(--b)}
+
+/* Week */
+.wnav{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:4px 0 12px}
+.menus{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.mc{text-align:left;padding:12px;border-radius:16px;background:var(--soft);border:2px solid transparent;transition:all .15s}
+.mc.on{border-color:var(--g);background:var(--gs)}
+.mc small{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--g)}
+.mc b{display:block;font-size:14px;font-weight:750;margin-top:2px;line-height:1.25}
+.mc span{display:block;font-size:12px;color:var(--muted);margin-top:4px;line-height:1.3}
+.drow{display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:12px 2px;border-bottom:1px solid var(--line)}
+.drow:last-child{border-bottom:0}
+.dnum{width:46px;flex-shrink:0;text-align:center}
+.dnum small{display:block;font-size:11.5px;font-weight:700;color:var(--muted);text-transform:uppercase}
+.dnum b{font-size:19px;font-weight:800}
+.drow.today .dnum b{color:var(--g)}
+.dinfo{flex:1;min-width:0;font-size:13.5px}
+.dinfo div{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--ink2)}
+.dinfo span{color:var(--muted);font-weight:600}
+.dots{display:flex;gap:4px}
+.dots i{width:8px;height:8px;border-radius:50%;background:var(--soft2)}
+.dots i.on{background:var(--g)}
+.stat3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.st{background:var(--card);border-radius:18px;box-shadow:var(--sh);padding:13px 12px}
+.st small{font-size:12px;font-weight:650;color:var(--muted);display:block}
+.st b{font-size:21px;font-weight:800;letter-spacing:-.02em;display:block;margin-top:3px}
+.st span{font-size:11.5px;color:var(--muted);font-weight:600}
+
+/* Cook */
+.chero{background:var(--ink);color:var(--bg);border-radius:24px;padding:18px;margin-bottom:12px}
+.chero small{font-size:12px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;opacity:.65}
+.chero h3{margin:4px 0 10px;font-size:21px;font-weight:800;letter-spacing:-.02em;line-height:1.2}
+.chero .row{display:flex;gap:8px;flex-wrap:wrap}
+.chero .pill{height:30px;padding:0 11px;border-radius:999px;background:rgba(128,128,128,.22);font-size:12.5px;font-weight:700;display:inline-flex;align-items:center;gap:6px}
+.tl{position:relative;padding-left:4px}
+.tli{display:flex;gap:12px;padding-bottom:14px;position:relative}
+.tli:last-child{padding-bottom:0}
+.tli:before{content:"";position:absolute;left:25px;top:38px;bottom:2px;width:2px;background:var(--line)}
+.tli:last-child:before{display:none}
+.tm{width:44px;height:30px;border-radius:9px;background:var(--gs);color:var(--g);font-size:12.5px;font-weight:800;display:grid;place-items:center;flex-shrink:0}
+.tli p{margin:4px 0 0;font-size:14px;color:var(--ink2)}
+.tli p b{color:var(--ink)}
+.rhead{display:flex;align-items:center;gap:12px;cursor:pointer}
+.rhead h3{margin:0;font-size:16px;font-weight:800;letter-spacing:-.01em;line-height:1.25}
+.rhead small{font-size:12.5px;color:var(--muted);font-weight:600}
+.rot{transition:transform .2s;color:var(--muted)}
+.rot.on{transform:rotate(180deg)}
+.ck{display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:10px 0;border-bottom:1px solid var(--line)}
+.ck:last-child{border-bottom:0}
+.box{width:24px;height:24px;border-radius:8px;border:2px solid var(--soft2);display:grid;place-items:center;color:transparent;flex-shrink:0;transition:all .15s}
+.box svg{width:15px;height:15px;stroke-width:3.2}
+.ck.on .box{background:var(--g);border-color:var(--g);color:#fff}
+[data-theme=dark] .ck.on .box{color:#06210f}
+.ck .t{flex:1;min-width:0}
+.ck .t b{display:block;font-size:14px;font-weight:650}
+.ck .t span{display:block;font-size:12.5px;color:var(--muted)}
+.ck.on .t b{text-decoration:line-through;color:var(--muted)}
+.ck .q{font-size:13.5px;font-weight:800;white-space:nowrap}
+.step{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px;color:var(--ink2)}
+.step:last-child{border-bottom:0}
+.sn{width:26px;height:26px;border-radius:9px;background:var(--ink);color:var(--bg);font-size:12.5px;font-weight:800;display:grid;place-items:center;flex-shrink:0}
+.tip{display:flex;gap:10px;padding:11px 12px;border-radius:14px;background:var(--bs);color:var(--ink2);font-size:13.5px;margin-top:12px}
+.tip svg{color:var(--b);margin-top:1px}
+.tups{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.tup{display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 0;border-radius:14px;background:var(--soft);transition:all .15s}
+.tup small{font-size:11.5px;font-weight:800;color:var(--muted)}
+.tup .ti{width:30px;height:30px;border-radius:10px;display:grid;place-items:center}
+.tup .ti svg{width:16px;height:16px}
+.tup em{font-style:normal;font-size:10.5px;font-weight:700;color:var(--muted)}
+.tup.fz .ti{background:var(--bs);color:var(--b)}
+.tup.fr .ti{background:var(--os);color:var(--o)}
+.tup.ea{opacity:.5}
+.tup.ea .ti{background:var(--gs);color:var(--g)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:12px;font-size:12px;color:var(--muted);font-weight:600}
+.legend span{display:inline-flex;align-items:center;gap:5px}
+.legend i{width:9px;height:9px;border-radius:3px}
+
+/* Shop */
+.shop-sum{display:flex;justify-content:space-between;align-items:flex-end;gap:12px}
+.big{font-size:30px;font-weight:800;letter-spacing:-.03em;line-height:1}
+.pbar{height:8px;border-radius:9px;background:var(--soft2);overflow:hidden;margin:14px 0 12px}
+.pbar i{display:block;height:100%;background:var(--g);border-radius:9px;transition:width .4s}
+.aisle h3{display:flex;align-items:center;gap:9px;margin:0 0 4px;font-size:14.5px;font-weight:800}
+.aisle h3 .mic{width:30px;height:30px;border-radius:10px}
+.aisle h3 .mic svg{width:16px;height:16px}
+.aisle h3 small{margin-left:auto;font-size:12.5px;color:var(--muted);font-weight:700}
+.dtag{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;padding:2px 6px;border-radius:6px;background:var(--ys);color:var(--y);margin-left:6px;vertical-align:1px}
+.addrow{display:flex;gap:8px;margin-top:10px}
+.inp{flex:1;min-width:0;height:44px;border-radius:14px;border:1.5px solid var(--line);background:var(--soft);padding:0 14px;font-size:15px;outline:none}
+.inp:focus{border-color:var(--g);background:var(--card)}
+.del{width:32px;height:32px;border-radius:10px;display:grid;place-items:center;color:var(--r)}
+
+/* Progress */
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;text-align:center}
+.cal .dw{font-size:11.5px;font-weight:800;color:var(--muted);padding-bottom:4px}
+.cd{aspect-ratio:1;border-radius:11px;background:var(--soft);font-size:13.5px;font-weight:700;display:grid;place-items:center;position:relative}
+.cd.x{background:none}
+.cd.full{background:var(--g);color:#fff}
+[data-theme=dark] .cd.full{color:#06210f}
+.cd.part{background:var(--os);color:var(--o)}
+.cd.today{box-shadow:inset 0 0 0 2px var(--ink)}
+.cd.fut{color:var(--muted);opacity:.6}
+.chart{width:100%;height:150px;display:block}
+.wl{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px}
+.wl:last-child{border-bottom:0}
+.eta{padding:12px 14px;border-radius:14px;background:var(--gs);color:var(--g);font-size:13.5px;font-weight:650;margin-top:12px}
+.setrow{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
+.setrow:last-child{border-bottom:0}
+.setrow b{font-size:14.5px;font-weight:700;display:block}
+.setrow span{font-size:12.5px;color:var(--muted)}
+.setrow .seg{margin:0;min-width:190px}
+
+/* Nav */
+.nav{position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--navbg);backdrop-filter:saturate(170%) blur(18px);-webkit-backdrop-filter:saturate(170%) blur(18px);border-top:1px solid var(--line);padding:6px 8px calc(6px + env(safe-area-inset-bottom))}
+.nav-in{max-width:560px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr)}
+.nb{display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 0 4px;font-size:11px;font-weight:700;color:var(--muted);position:relative}
+.nb svg{width:23px;height:23px}
+.nb.on{color:var(--g)}
+.nb.on:before{content:"";position:absolute;top:-7px;width:28px;height:3px;border-radius:0 0 3px 3px;background:var(--g)}
+
+/* Timer pill */
+.timer{position:fixed;left:50%;bottom:calc(76px + env(safe-area-inset-bottom));transform:translate(-50%,20px);opacity:0;pointer-events:none;z-index:45;width:calc(100% - 24px);max-width:536px;background:var(--ink);color:var(--bg);border-radius:20px;padding:10px 10px 10px 16px;display:flex;align-items:center;gap:12px;box-shadow:0 12px 32px rgba(0,0,0,.3);transition:all .3s cubic-bezier(.2,.9,.3,1.2)}
+.timer.on{transform:translate(-50%,0);opacity:1;pointer-events:auto}
+.timer .tc{font-size:24px;font-weight:800;letter-spacing:-.02em;color:var(--o)}
+.timer.end .tc{color:var(--g);animation:pulse 1s infinite}
+@keyframes pulse{50%{opacity:.4}}
+.timer .tl2{flex:1;min-width:0;font-size:12.5px;font-weight:650;opacity:.75;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.timer button{height:38px;min-width:38px;padding:0 10px;border-radius:12px;background:rgba(128,128,128,.25);font-size:13px;font-weight:750;display:grid;place-items:center}
+
+/* Sheet */
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:60;opacity:0;pointer-events:none;transition:opacity .25s}
+.ov.on{opacity:1;pointer-events:auto}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:61;max-width:600px;margin:0 auto;background:var(--bg);border-radius:26px 26px 0 0;max-height:90vh;overflow-y:auto;transform:translateY(100%);transition:transform .32s cubic-bezier(.2,.9,.3,1);padding:10px 16px calc(24px + env(safe-area-inset-bottom))}
+.sheet.on{transform:none}
+.grab{width:40px;height:5px;border-radius:5px;background:var(--soft2);margin:0 auto 12px}
+.sheet h2{margin:0 0 4px;font-size:24px;font-weight:800;letter-spacing:-.02em}
+.sheet h3{font-size:15.5px;font-weight:800;margin:0 0 8px}
+.sheet p,.sheet li{font-size:14px;color:var(--ink2)}
+.sheet ul{margin:0;padding-left:18px}
+.sheet li{margin-bottom:6px}
+.gtbl{width:100%;border-collapse:collapse;font-size:13.5px}
+.gtbl td{padding:9px 4px;border-bottom:1px solid var(--line);vertical-align:top}
+.gtbl tr:last-child td{border-bottom:0}
+.gtbl td:first-child{font-weight:700;width:45%}
+.toast{position:fixed;left:50%;top:calc(14px + env(safe-area-inset-top));transform:translate(-50%,-30px);opacity:0;z-index:70;background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:14px;font-size:13.5px;font-weight:700;transition:all .3s;pointer-events:none;box-shadow:0 8px 24px rgba(0,0,0,.2);max-width:90%;text-align:center}
+.toast.on{transform:translate(-50%,0);opacity:1}
+</style>
+</head>
+<body data-theme="light">
+<div class="wrap">
+  <header class="top">
+    <div class="top-in">
+      <div class="brand">
+        <div class="logo"><svg class="i" viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="10" rx="3"/><path d="M3 10h18M10 6h4"/></svg></div>
+        <div><h1>Táper</h1><p id="tsub">Plan 1.200 kcal</p></div>
+      </div>
+      <div class="tops">
+        <button class="ibtn" data-act="guide" aria-label="Guía de uso"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3M12 17h.01"/></svg></button>
+        <button class="ibtn" data-act="theme" aria-label="Cambiar tema" id="themeBtn"></button>
+      </div>
+    </div>
+  </header>
+  <main id="v-hoy" class="view"></main>
+  <section id="v-semana" class="view"></section>
+  <section id="v-cocinar" class="view"></section>
+  <section id="v-compra" class="view"></section>
+  <section id="v-progreso" class="view"></section>
+</div>
+
+<div class="timer" id="timer">
+  <div class="tc num" id="tClock">00:00</div>
+  <div class="tl2" id="tLabel"></div>
+  <button data-act="tplus" aria-label="Añadir un minuto">+1′</button>
+  <button data-act="tpause" id="tPause" aria-label="Pausar"></button>
+  <button data-act="tclose" aria-label="Cerrar temporizador"><svg class="i sm" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+</div>
+
+<nav class="nav" aria-label="Secciones">
+  <div class="nav-in">
+    <button class="nb" data-tab="hoy"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.5"/></svg>Hoy</button>
+    <button class="nb" data-tab="semana"><svg class="i" viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="17" rx="3"/><path d="M8 2.5v4M16 2.5v4M3 10h18"/></svg>Semana</button>
+    <button class="nb" data-tab="cocinar"><svg class="i" viewBox="0 0 24 24"><path d="M4 11h16v6a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z"/><path d="M2 11h20M9 7c0-1.3 1-1.7 1-3M14 7c0-1.3 1-1.7 1-3"/></svg>Cocinar</button>
+    <button class="nb" data-tab="compra"><svg class="i" viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.6 12.2a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.5L21.5 8H6"/></svg>Compra</button>
+    <button class="nb" data-tab="progreso"><svg class="i" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="m7 14 4-4 4 3 5-6"/></svg>Progreso</button>
+  </div>
+</nav>
+
+<div class="ov" id="ov" data-act="closeSheet"></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true"></div>
+<div class="toast" id="toast"></div>
+<input type="file" id="fileIn" accept="application/json,.json" hidden>
+
+<script>
+(function(){
+"use strict";
+
+/* ---------- Iconos ---------- */
+const P={
+ sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
+ apple:'<path d="M12 7c-2-1.5-6-1.4-7.4 1.8C3 12.6 5.2 21 8.6 21c1.3 0 2-.6 3.4-.6s2.1.6 3.4.6c3.4 0 5.6-8.4 4-12.2C18 5.6 14 5.5 12 7z"/><path d="M12 7c.3-2 1.6-3.6 3.8-4"/>',
+ bowl:'<path d="M3 11h18a9 9 0 0 1-18 0z"/><path d="M8 7.5c0-1.5 1-2 1-3.5M12 7.5c0-1.5 1-2 1-3.5M16 7.5c0-1.5 1-2 1-3.5"/>',
+ moon:'<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>',
+ check:'<path d="M20 6 9 17l-5-5"/>',
+ l:'<path d="m15 18-6-6 6-6"/>', r:'<path d="m9 18 6-6-6-6"/>', d:'<path d="m6 9 6 6 6-6"/>',
+ timer:'<circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2M9 2h6"/>',
+ drop:'<path d="M12 2.7 17.7 8.3a8 8 0 1 1-11.4 0z"/>',
+ bolt:'<path d="M13 2 3 14h9l-1 8 10-12h-9z"/>',
+ snow:'<path d="M12 2v20M4.9 4.9l14.2 14.2M2 12h20M19.1 4.9 4.9 19.1"/>',
+ fridge:'<rect x="5" y="2" width="14" height="20" rx="2.5"/><path d="M5 10h14M9 5.5v2M9 13v3"/>',
+ play:'<path d="M7 4v16l13-8z"/>', pause:'<path d="M8 4v16M16 4v16"/>',
+ share:'<path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7M16 6l-4-4-4 4M12 2v13"/>',
+ plus:'<path d="M12 5v14M5 12h14"/>', x:'<path d="M18 6 6 18M6 6l12 12"/>',
+ info:'<circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/>',
+ leaf:'<path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.5 19 2c1 2 2 4.2 2 8 0 5.5-4.8 10-10 10z"/><path d="M2 21c0-3 1.9-5.4 5.1-6"/>',
+ meat:'<path d="M15.5 4.5a5 5 0 0 1 4 6.5c-1 3-4 5-7 6l-3 3a2 2 0 1 1-3-3l-.5-.5a2 2 0 1 1 3-3l3-3c1-3 2-6 3.5-6z"/>',
+ milk:'<path d="M8 2h8M9 2v3l-2 3v12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V8l-2-3V2"/><path d="M7 12h10"/>',
+ jar:'<rect x="5" y="7" width="14" height="15" rx="3"/><path d="M7 3h10v4H7z"/>',
+ dots:'<circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/>',
+ sunM:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
+ moonM:'<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>',
+ auto:'<circle cx="12" cy="12" r="9"/><path d="M12 3v18" /><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/>',
+ trash:'<path d="M3 6h18M8 6V4h8v2M6 6l1 14a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-14"/>',
+ down:'<path d="M12 3v12M7 10l5 5 5-5M5 21h14"/>', up:'<path d="M12 21V9M7 14l5-5 5 5M5 3h14"/>'
+};
+const ic=(n,c)=>`<svg class="i ${c||''}" viewBox="0 0 24 24">${P[n]}</svg>`;
+
+/* ---------- Utilidades fecha ---------- */
+const DAY=864e5, pad=n=>String(n).padStart(2,'0');
+const iso=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+const parse=s=>{const[a,b,c]=s.split('-').map(Number);return new Date(a,b-1,c)};
+const addD=(d,n)=>new Date(d.getFullYear(),d.getMonth(),d.getDate()+n);
+const dow=d=>(d.getDay()+6)%7;
+const monday=d=>addD(d,-dow(d));
+const wk=d=>iso(monday(d));
+const MES=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+const DS=['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'], DL=['lunes','martes','miércoles','jueves','viernes','sábado','domingo'];
+const eur=n=>n.toFixed(2).replace('.',',')+' €';
+const kg=n=>n.toFixed(1).replace('.',',');
+const todayISO=()=>iso(new Date());
+const REF=new Date(2026,0,5);
+
+/* ---------- Datos nutricionales ---------- */
+const BREAKFASTS=[
+ {short:'Bol de queso y avena',name:'Bol de queso batido 0 % con avena y canela',k:222,p:20,c:29,f:2,
+  ing:[['Queso fresco batido 0 %','200 g','4 cucharadas soperas colmadas (≈ 2/5 de tarrina)'],['Copos de avena','35 g','3 cucharadas soperas colmadas'],['Canela','al gusto','y café o infusión sin azúcar']],
+  how:['Echa el queso batido en un bol.','Añade la avena y la canela y mezcla.','Truco: prepáralo la noche antes y la avena queda tierna.']},
+ {short:'Porridge caliente',name:'Porridge caliente de avena con queso batido',k:222,p:20,c:29,f:2,
+  ing:[['Copos de avena','35 g','3 cucharadas soperas colmadas'],['Agua','100 ml','medio vaso'],['Queso fresco batido 0 %','200 g','se añade al final']],
+  how:['Mezcla la avena con el agua y la canela en un bol apto para micro.','Microondas 2 minutos, removiendo a mitad.','Fuera del micro, incorpora el queso batido y remueve hasta que quede cremoso.'],timer:[120,'Porridge al micro']},
+ {short:'Tostada con huevo',name:'Tostada integral con huevo y pavo',k:230,p:19,c:20,f:8,
+  ing:[['Pan 100 % integral','40 g','1 rebanada grande (compra aparte)'],['Huevo','1 ud','a la plancha, sin aceite'],['Pechuga de pavo o ½ lata de atún','50 g','2 lonchas gruesas'],['Tomate','½ ud','rallado o en rodajas']],
+  how:['Tuesta el pan y pon el tomate por encima.','Haz el huevo a la plancha en sartén antiadherente.','Monta pavo y huevo encima de la tostada.']}
+];
+const SNACKS=[
+ {short:'3 mandarinas',name:'3 mandarinas pequeñas',k:110,p:2,c:26,f:0,ing:[['Mandarinas pequeñas','220 g','3 unidades']],how:['Cómelas enteras, en gajos: la fibra sacia mucho más que un zumo.','Puedes tomarlas a media mañana o a media tarde, cuando más hambre tengas.']},
+ {short:'1 manzana',name:'1 manzana grande',k:105,p:1,c:25,f:0,ing:[['Manzana grande','210 g','1 unidad con piel']],how:['Lávala y cómela con piel (ahí está la fibra).','Troceada con canela queda genial.']},
+ {short:'Kiwis',name:'2 kiwis',k:100,p:2,c:22,f:1,ing:[['Kiwis medianos','180 g','2 unidades']],how:['Pártelos por la mitad y cómelos con cucharilla.']}
+];
+const DINNERS=[
+ {short:'Revuelto de atún',name:'Revuelto de huevos con atún y brócoli',k:385,p:34,c:22,f:17,
+  ing:[['Huevos','2 uds','talla M o L'],['Atún al natural','1 lata','56 g escurrido'],['Brócoli congelado','300 g','media bolsa / un plato lleno'],['Aceite de oliva','5 ml','1 cucharilla de postre'],['Mandarina','1 ud','de postre']],
+  how:['Brócoli al micro 4 minutos en un bol tapado y escúrrelo.','En la sartén con la cucharilla de aceite, saltea el brócoli 1 minuto.','Añade el atún y los huevos batidos y remueve hasta que cuajen.'],timer:[240,'Brócoli al micro']},
+ {short:'Merluza y patata',name:'Merluza con patata al micro y judías verdes',k:380,p:41,c:34,f:7,
+  ing:[['Merluza congelada','200 g','2–3 filetes'],['Patata','130 g','1 mediana, del tamaño de un puño'],['Judías verdes congeladas','250 g','un bol grande'],['Aceite de oliva','5 ml','1 cucharilla, en crudo'],['Limón y ajo en polvo','al gusto','']],
+  how:['Pincha la patata entera con un tenedor y micro 5 minutos.','Judías verdes al micro 4 minutos tapadas.','Merluza a la plancha 3 min por lado, o 4 min al micro tapada con limón y ajo.','Aliña todo con la cucharilla de aceite en crudo.'],timer:[300,'Patata al micro']},
+ {short:'Tortilla de espinacas',name:'Tortilla de espinacas y patata + postre de queso',k:390,p:29,c:33,f:16,
+  ing:[['Huevos','2 uds','talla M o L'],['Espinacas congeladas','200 g','4 bolitas / medio paquete'],['Patata','100 g','1 pequeña'],['Aceite de oliva','5 ml','1 cucharilla de postre'],['Queso fresco batido 0 %','100 g','2 cucharadas, con canela de postre']],
+  how:['Patata en dados al micro 3 minutos y espinacas al micro 3 minutos.','Escurre bien las espinacas y mézclalas con la patata y los huevos batidos.','Cuaja en sartén con la cucharilla de aceite, vuelta y vuelta.','De postre, el queso batido con canela.'],timer:[180,'Patata y espinacas']}
+];
+const LUNCH_DEF=[0,0,1,0,1,0,1];   // 0 = Olla 1 (L, M, J, S) · 1 = Olla 2 (X, V, D)
+const DINNER_DEF=[0,1,2,1,0,1,2];  // A, B, C
+const REHEAT=['Pasa el táper del congelador a la nevera la noche anterior.','Microondas 3–4 minutos, removiendo a mitad.','Si ha espesado, añade 2 cucharadas de agua antes de calentar.'];
+
+const MENUS=[
+ {name:'Lentejas y arroz con pollo',tag:'Clásico',
+  o1:{short:'Lentejas con pollo',name:'Lentejas estofadas con pollo',k:430,p:45,c:42,f:6,
+   portion:[['Lenteja pardina (en seco)','60 g','1 taza de café llena'],['Pechuga de pollo','125 g','un buen puñado de dados'],['Verduras y caldo','250 g','un cazo grande']],
+   batch:[['Lenteja pardina seca','240 g','4 tazas de café'],['Pechuga de pollo en dados','500 g','media bandeja de 1 kg'],['Cebolla','2 uds','picada'],['Zanahoria','3 uds','en rodajas'],['Menestra congelada','200 g','2 puñados'],['Tomate triturado','400 g','medio bote'],['Aceite de oliva','10 ml','1 cucharada sopera'],['Pimentón, comino, ajo, sal','al gusto','']],
+   steps:[['Dora el pollo con la cucharada de aceite y sal, 4 minutos.'],['Añade cebolla y zanahoria y sofríe 5 minutos.'],['Echa tomate, menestra, pimentón, comino y las lentejas lavadas (las pardinas no necesitan remojo).'],['Cubre con agua 3 dedos por encima y cuece a fuego medio.',1800,'Lentejas'],['Déjalas algo caldosas: sacian más y se recalientan mejor.']]},
+  o2:{short:'Arroz con pollo',name:'Arroz guisado con pollo y verduras',k:460,p:42,c:53,f:7,
+   portion:[['Arroz (en seco)','50 g','1 taza de café rasa'],['Pechuga de pollo','150 g','un puñado grande de dados'],['Menestra y tomate','280 g','el resto del táper']],
+   batch:[['Arroz redondo','150 g','3 tazas de café rasas'],['Pechuga de pollo en dados','450 g','el resto de la bandeja'],['Menestra congelada','450 g','media bolsa grande'],['Cebolla','1 ud','picada'],['Tomate triturado','400 g','el otro medio bote'],['Aceite de oliva','10 ml','1 cucharada sopera'],['Cúrcuma, ajo, pimienta, sal','al gusto','']],
+   steps:[['Sofríe el pollo y la cebolla con la cucharada de aceite, 5 minutos.'],['Añade la menestra, el tomate y las especias, 3 minutos.'],['Echa el arroz y 2,5 veces su volumen de agua (unos 400 ml).',1080,'Arroz'],['Apaga y deja reposar 5 minutos tapado antes de repartir.']]},
+  shop:[{id:'pollo1k',n:'Pechuga de pollo entera',q:'Bandeja 1 kg',p:6.5,a:'carne',u:.95},{id:'lenteja',n:'Lenteja pardina',q:'Paquete 1 kg',p:1.3,a:'despensa',u:.24,d:1},{id:'arroz',n:'Arroz redondo',q:'Paquete 1 kg',p:1.1,a:'despensa',u:.15,d:1},{id:'menestra',n:'Menestra de verduras',q:'Bolsa 1 kg',p:1.6,a:'congelados',u:.65}]},
+ {name:'Garbanzos y macarrones boloñesa',tag:'Pasta',
+  o1:{short:'Garbanzos con espinacas',name:'Potaje de garbanzos con pollo y espinacas',k:440,p:46,c:39,f:10,
+   portion:[['Garbanzo cocido','200 g','medio bote escurrido'],['Pechuga de pollo','125 g','un buen puñado de dados'],['Espinacas y caldo','200 g','un cazo']],
+   batch:[['Garbanzo cocido','800 g','2 botes, lavados'],['Pechuga de pollo en dados','500 g','media bandeja'],['Espinacas congeladas','300 g','6 bolitas'],['Cebolla','2 uds','picada'],['Tomate triturado','400 g','medio bote'],['Aceite de oliva','10 ml','1 cucharada sopera'],['Pimentón, comino, ajo, sal','al gusto','']],
+   steps:[['Dora el pollo y la cebolla con la cucharada de aceite, 5 minutos.'],['Añade pimentón, tomate, espinacas y 3 vasos de agua.'],['Incorpora los garbanzos lavados y cuece a fuego suave.',1200,'Garbanzos'],['Aplasta un cazo de garbanzos contra la olla para que el caldo espese.']]},
+  o2:{short:'Macarrones boloñesa',name:'Macarrones integrales con boloñesa de pollo',k:450,p:45,c:46,f:7,
+   portion:[['Macarrones integrales (en seco)','55 g','un puñado grande'],['Pollo picado en salsa','150 g','2 cazos de salsa'],['Verduras','120 g','ya en la salsa']],
+   batch:[['Macarrones integrales','165 g','un tercio de paquete'],['Pechuga de pollo muy picada','450 g','el resto de la bandeja'],['Calabacín y champiñón','350 g','picados pequeños'],['Cebolla','1 ud','picada'],['Tomate triturado','400 g','medio bote'],['Aceite de oliva','10 ml','1 cucharada sopera'],['Orégano, ajo, sal','al gusto','']],
+   steps:[['Pica el pollo muy pequeño (o pásalo por la picadora).'],['Saltéalo con cebolla y verduras en la cucharada de aceite, 6 minutos.'],['Añade tomate y orégano y deja reducir la salsa.',720,'Boloñesa'],['Mientras, cuece la pasta 2 minutos menos de lo que indica el paquete.',540,'Pasta'],['Mezcla pasta y salsa y reparte.']]},
+  shop:[{id:'pollo1k',n:'Pechuga de pollo entera',q:'Bandeja 1 kg',p:6.5,a:'carne',u:.95},{id:'garbanzo',n:'Garbanzo cocido',q:'2 botes de 400 g',p:1.4,a:'despensa',u:1},{id:'macarron',n:'Macarrones integrales',q:'Paquete 500 g',p:.95,a:'despensa',u:.33,d:1},{id:'calabacin',n:'Calabacín y champiñones',q:'1 calabacín + 1 bandeja',p:1.8,a:'fruta',u:1},{id:'espinaca2',n:'Espinacas congeladas (extra)',q:'Bolsa 400 g',p:1,a:'congelados',u:.75}]},
+ {name:'Alubias y arroz al curry',tag:'Curry',
+  o1:{short:'Alubias con pollo',name:'Alubias blancas guisadas con pollo',k:405,p:44,c:38,f:6,
+   portion:[['Alubia blanca cocida','200 g','medio bote escurrido'],['Pechuga de pollo','125 g','un buen puñado'],['Verduras y caldo','250 g','un cazo grande']],
+   batch:[['Alubia blanca cocida','800 g','2 botes, lavados'],['Pechuga de pollo en dados','500 g','media bandeja'],['Zanahoria','3 uds','en rodajas'],['Judías verdes congeladas','200 g','2 puñados'],['Cebolla','2 uds','picada'],['Tomate triturado','400 g','medio bote'],['Aceite de oliva','10 ml','1 cucharada sopera'],['Pimentón, laurel, sal','al gusto','']],
+   steps:[['Dora el pollo con cebolla y zanahoria en la cucharada de aceite, 6 minutos.'],['Añade tomate, pimentón, laurel, judías verdes y 3 vasos de agua.',900,'Verduras'],['Incorpora las alubias lavadas y hierve suave.',600,'Alubias'],['Retira el laurel antes de repartir.']]},
+  o2:{short:'Arroz al curry',name:'Arroz al curry con pollo y brócoli',k:440,p:46,c:47,f:6,
+   portion:[['Arroz (en seco)','50 g','1 taza de café rasa'],['Pechuga de pollo','150 g','un puñado grande'],['Brócoli y salsa','230 g','el resto del táper']],
+   batch:[['Arroz redondo o basmati','150 g','3 tazas de café rasas'],['Pechuga de pollo en tiras','450 g','el resto de la bandeja'],['Brócoli congelado','450 g','un tercio de bolsa grande'],['Cebolla','1 ud','picada'],['Curry en polvo','2 cdtas','colmadas'],['Queso fresco batido 0 %','120 g','3 cucharadas (salsa sin nata)'],['Aceite de oliva','10 ml','1 cucharada sopera']],
+   steps:[['Dora el pollo y la cebolla con el aceite y el curry, 5 minutos.'],['Añade el brócoli, el arroz y el doble de agua.',960,'Arroz al curry'],['Apaga el fuego y mezcla el queso batido: queda una salsa cremosa sin nata.']]},
+  shop:[{id:'pollo1k',n:'Pechuga de pollo entera',q:'Bandeja 1 kg',p:6.5,a:'carne',u:.95},{id:'alubia',n:'Alubia blanca cocida',q:'2 botes de 400 g',p:1.4,a:'despensa',u:1},{id:'arroz',n:'Arroz redondo',q:'Paquete 1 kg',p:1.1,a:'despensa',u:.15,d:1},{id:'curry',n:'Curry en polvo',q:'Bote pequeño',p:1,a:'despensa',u:.1,d:1}]},
+ {name:'Chili de pavo y pollo al chilindrón',tag:'Picante',
+  o1:{short:'Chili de pavo',name:'Chili de pavo con alubias rojas y arroz',k:430,p:38,c:47,f:10,
+   portion:[['Pavo picado','125 g','un cazo de chili'],['Alubia roja cocida','100 g','un cuarto de bote'],['Arroz (en seco)','30 g','media taza de café']],
+   batch:[['Picada de pavo (o pollo)','500 g','1 bandeja'],['Alubia roja cocida','400 g','1 bote, lavado'],['Arroz','120 g','2 tazas de café'],['Pimiento rojo','1 ud','en dados'],['Cebolla','1 ud','picada'],['Tomate triturado','400 g','medio bote'],['Aceite de oliva','10 ml','1 cucharada sopera'],['Comino, pimentón, guindilla','al gusto','']],
+   steps:[['Pon a cocer el arroz en un cazo aparte.',1080,'Arroz del chili'],['Sofríe cebolla y pimiento con el aceite, 5 minutos.'],['Añade el pavo y desmenúzalo con la cuchara hasta que cambie de color.'],['Añade tomate, especias y alubias y deja espesar.',900,'Chili'],['Reparte el chili con un poco de arroz en cada táper.']]},
+  o2:{short:'Pollo al chilindrón',name:'Pollo al chilindrón con arroz',k:450,p:40,c:50,f:8,
+   portion:[['Arroz (en seco)','50 g','1 taza de café rasa'],['Pechuga de pollo','150 g','un puñado grande'],['Pimientos y tomate','200 g','la salsa']],
+   batch:[['Pechuga de pollo en dados','450 g','1 bandeja de 500 g'],['Arroz','150 g','3 tazas de café rasas'],['Pimiento rojo y verde','2 uds','en tiras'],['Cebolla','1 ud','en juliana'],['Tomate triturado','400 g','el otro medio bote'],['Aceite de oliva','10 ml','1 cucharada sopera'],['Pimentón, ajo, sal','al gusto','']],
+   steps:[['Cuece el arroz aparte (puedes hacerlo junto al del chili).',1080,'Arroz'],['Dora el pollo con el aceite, 4 minutos.'],['Añade cebolla y pimientos y sofríe 6 minutos.'],['Añade tomate y pimentón y guisa a fuego suave.',900,'Chilindrón'],['Reparte el arroz y el pollo con su salsa.']]},
+  shop:[{id:'pavo',n:'Picada de pavo o pollo',q:'Bandeja 500 g',p:3.5,a:'carne',u:1},{id:'pollo500',n:'Pechuga de pollo',q:'Bandeja 500 g',p:3.4,a:'carne',u:.9},{id:'alubiaroja',n:'Alubia roja cocida',q:'1 bote de 400 g',p:.75,a:'despensa',u:1},{id:'pimientos',n:'Pimientos rojo y verde',q:'3 unidades',p:1.6,a:'fruta',u:1},{id:'arroz',n:'Arroz redondo',q:'Paquete 1 kg',p:1.1,a:'despensa',u:.27,d:1}]}
+];
+
+const BASE_SHOP=[
+ {id:'fruta',n:'Mandarinas (o manzanas)',q:'Malla 2 kg',p:2.8,a:'fruta',u:1},
+ {id:'cebolla',n:'Cebollas',q:'Malla 1 kg',p:1.2,a:'fruta',u:.45,d:1},
+ {id:'zanahoria',n:'Zanahorias',q:'Bolsa 1 kg',p:.9,a:'fruta',u:.35,d:1},
+ {id:'patata',n:'Patatas',q:'Malla 2 kg',p:1.8,a:'fruta',u:.3,d:1},
+ {id:'queso',n:'Queso fresco batido 0 %',q:'4 tarrinas de 500 g',p:3.8,a:'lacteos',u:.95},
+ {id:'huevos',n:'Huevos M/L',q:'Docena',p:2.3,a:'lacteos',u:.67},
+ {id:'merluza',n:'Filetes de merluza',q:'Bolsa 600 g',p:4.2,a:'congelados',u:1},
+ {id:'brocoli',n:'Brócoli',q:'2 bolsas (1,5 kg)',p:2,a:'congelados',u:.6},
+ {id:'judias',n:'Judías verdes',q:'Bolsa 1 kg',p:1.4,a:'congelados',u:.8},
+ {id:'espinaca',n:'Espinacas en bolitas',q:'Bolsa 400 g',p:1,a:'congelados',u:1},
+ {id:'atun',n:'Atún al natural',q:'Pack 3 latas',p:2.3,a:'despensa',u:.67},
+ {id:'tomate',n:'Tomate natural triturado',q:'Bote 800 g',p:.95,a:'despensa',u:1},
+ {id:'avena',n:'Copos de avena',q:'Paquete 500 g',p:.95,a:'despensa',u:.5,d:1}
+];
+const AISLES=[['fruta','Frutería','leaf','c-g'],['carne','Carne y pescado','meat','c-r'],['lacteos','Lácteos y huevos','milk','c-b'],['congelados','Congelados','snow','c-b'],['despensa','Despensa','jar','c-o'],['otros','Otros','dots','c-o']];
+
+/* ---------- Estado ---------- */
+const KEY='taper_v1';
+let S={};
+try{S=JSON.parse(localStorage.getItem(KEY))||{}}catch(e){S={}}
+function fix(){S.days??={};S.menuOv??={};S.shop??={};S.custom??={};S.ing??={};S.fridge??={};S.weights??=[];S.theme??='auto';S.hideDone??=false;}
+fix();
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+const U={tab:'hoy',sel:todayISO(),open:null,cookOff:0,shopOff:0,openRec:'o1',calY:new Date().getFullYear(),calM:new Date().getMonth()};
+
+const menuIdx=d=>{const k=wk(d);if(S.menuOv[k]!=null)return S.menuOv[k];const n=Math.round((monday(d)-REF)/(7*DAY));return((n%4)+4)%4};
+const dayRec=s=>(S.days[s]??={done:{},sel:{},water:0,wo:false});
+const doneCount=s=>{const r=S.days[s];return r&&r.done?Object.values(r.done).filter(Boolean).length:0};
+
+function plan(s){
+  const d=parse(s),w=dow(d),M=MENUS[menuIdx(d)],r=S.days[s]||{},sel=r.sel||{},done=r.done||{};
+  const list=[
+    {id:'desayuno',slot:'Desayuno',time:'08:30',ic:'sun',col:'c-o',opts:BREAKFASTS,i:sel.desayuno??0},
+    {id:'snack',slot:'Tentempié',time:'11:30 o 17:30',ic:'apple',col:'c-r',opts:SNACKS,i:sel.snack??0},
+    {id:'comida',slot:'Comida · táper',time:'14:00',ic:'bowl',col:'c-g',opts:[M.o1,M.o2],i:sel.comida??LUNCH_DEF[w]},
+    {id:'cena',slot:'Cena · 10 min',time:'21:00',ic:'moon',col:'c-b',opts:DINNERS,i:sel.cena??DINNER_DEF[w]}
+  ];
+  return list.map(m=>{
+    m.i%=m.opts.length;const x=m.opts[m.i];
+    Object.assign(m,{x,name:x.name,k:x.k,p:x.p,c:x.c,f:x.f,ing:x.ing||x.portion,how:x.how||REHEAT,timer:x.timer||(m.id==='comida'?[240,'Calentar táper']:null),done:!!done[m.id],extra:null});
+    if(r.wo&&m.id==='desayuno'){m.k+=75;m.p+=3;m.c+=12;m.f+=1;m.extra='Día de entreno: añade 20 g más de avena (2 cucharadas).'}
+    if(r.wo&&m.id==='cena'){m.k+=70;m.p+=6;m.f+=5;m.extra='Día de entreno: añade 1 huevo más.'}
+    return m;
+  });
+}
+const totals=ms=>ms.reduce((t,m)=>{t.K+=m.k;t.P+=m.p;t.C+=m.c;t.F+=m.f;if(m.done){t.k+=m.k;t.p+=m.p;t.c+=m.c;t.f+=m.f}return t},{K:0,P:0,C:0,F:0,k:0,p:0,c:0,f:0});
+
+/* ---------- Tema ---------- */
+const mq=window.matchMedia('(prefers-color-scheme: dark)');
+function applyTheme(){
+  const t=S.theme==='auto'?(mq.matches?'dark':'light'):S.theme;
+  document.body.setAttribute('data-theme',t);
+  document.getElementById('meta-theme').setAttribute('content',t==='dark'?'#0d100f':'#f4f2ec');
+  document.getElementById('themeBtn').innerHTML=ic(S.theme==='auto'?'auto':S.theme==='dark'?'moonM':'sunM');
+}
+mq.addEventListener&&mq.addEventListener('change',applyTheme);
+
+/* ---------- Toast ---------- */
+let toastT;
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('on');clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('on'),2200)}
+
+/* ---------- HOY ---------- */
+function renderHoy(){
+  const s=U.sel,d=parse(s),t0=todayISO(),isT=s===t0;
+  const diff=Math.round((d-parse(t0))/DAY);
+  const eb=diff===0?'Hoy':diff===-1?'Ayer':diff===1?'Mañana':DL[dow(d)];
+  const ms=plan(s),T=totals(ms),r=S.days[s]||{},M=MENUS[menuIdx(d)];
+  const mon=monday(d);
+  let strip='';
+  for(let i=0;i<7;i++){const x=addD(mon,i),xs=iso(x),n=doneCount(xs);
+    strip+=`<button class="sd ${xs===s?'sel':''} ${xs===t0?'today':''} ${n>=3?'full':n>0?'part':''}" data-act="pick" data-d="${xs}"><small>${DS[i]}</small><b class="num">${x.getDate()}</b><i></i></button>`}
+  // Comida que toca ahora
+  let nowId=null;
+  if(isT){const h=new Date().getHours()+new Date().getMinutes()/60;const ni=h<10.5?0:h<13?1:h<17.5?2:3;const nx=ms.find((m,i)=>!m.done&&i>=ni)||ms.find(m=>!m.done);nowId=nx?nx.id:null}
+  else{const nx=ms.find(m=>!m.done);nowId=nx?nx.id:null}
+  const openId=U.open===null?nowId:U.open;
+  const left=Math.max(0,T.K-T.k),C=2*Math.PI*48,pct=Math.min(1,T.k/T.K);
+  const bar=(a,b)=>b?Math.min(100,Math.round(a/b*100)):0;
+  // Táper de mañana
+  const tm=iso(addD(d,1)),tmMeal=plan(tm)[2],fr=!!S.fridge[tm];
+  const water=r.water||0;
+  let html=`
+  <div class="daynav">
+    <button class="ibtn" data-act="day" data-n="-1" aria-label="Día anterior">${ic('l')}</button>
+    <div class="lbl"><div class="eyebrow">${eb}</div><div class="dtitle">${DL[dow(d)]} ${d.getDate()} de ${MES[d.getMonth()]}</div></div>
+    <button class="ibtn" data-act="day" data-n="1" aria-label="Día siguiente">${ic('r')}</button>
+  </div>
+  <div class="strip">${strip}</div>
+  ${!isT?`<div style="text-align:center;margin:-4px 0 12px"><button class="chip g" data-act="today">${ic('l','sm')} Volver a hoy</button></div>`:''}
+  <section class="hero">
+    <div class="sum">
+      <div class="ring"><svg viewBox="0 0 110 110"><circle class="rt" cx="55" cy="55" r="48"/><circle class="rv" cx="55" cy="55" r="48" stroke-dasharray="${C.toFixed(1)}" stroke-dashoffset="${(C*(1-pct)).toFixed(1)}"/></svg>
+        <div class="rc">${left===0?`<b>${ic('check')}</b><span>¡Día cumplido!</span>`:`<b class="num">${left}</b><span>kcal te quedan</span>`}</div></div>
+      <div class="macros">
+        <div class="mrow"><div class="mt"><span>Comido</span><b class="num">${T.k} / ${T.K} kcal</b></div><div class="bar"><i style="width:${bar(T.k,T.K)}%"></i></div></div>
+        <div class="mrow"><div class="mt"><span>Proteína</span><b class="num">${T.p} / ${T.P} g</b></div><div class="bar"><i style="width:${bar(T.p,T.P)}%"></i></div></div>
+        <div class="mrow"><div class="mt"><span>Carbohidratos</span><b class="num">${T.c} / ${T.C} g</b></div><div class="bar"><i style="width:${bar(T.c,T.C)}%"></i></div></div>
+        <div class="mrow"><div class="mt"><span>Grasas</span><b class="num">${T.f} / ${T.F} g</b></div><div class="bar"><i style="width:${bar(T.f,T.F)}%"></i></div></div>
+      </div>
+    </div>
+    <div class="hero-foot">
+      <button class="hchip ${r.wo?'on':''}" data-act="wo">${ic('bolt','sm')} ${r.wo?'Día de entreno · +145 kcal':'¿Entrenas hoy?'}</button>
+      <button class="hchip" data-act="tab" data-t="semana">${ic('bowl','sm')} ${M.name}</button>
+    </div>
+  </section>
+  <div class="sec"><h2>Tus 4 comidas</h2><span class="muted" style="font-size:13px;font-weight:600">${ms.filter(m=>m.done).length} de 4 hechas</span></div>`;
+  ms.forEach(m=>{
+    const open=m.id===openId,isNow=m.id===nowId&&!m.done&&isT;
+    html+=`<article class="meal ${m.done?'done':''} ${isNow?'now':''}">
+      <div class="mh" data-act="open" data-id="${m.id}">
+        <div class="mic ${m.col}">${ic(m.ic)}</div>
+        <div class="mt2"><div class="mslot">${m.time} · ${m.slot} ${isNow?'<span class="badge">Ahora</span>':''}</div><div class="mname">${m.name}</div><div class="mmeta num">${m.k} kcal · ${m.p} g proteína</div></div>
+        <button class="chk" data-act="done" data-id="${m.id}" aria-label="Marcar ${m.slot} como hecha">${ic('check')}</button>
+      </div>
+      ${open?`<div class="mb">
+        <div class="opts">${m.opts.map((o,i)=>`<button class="opt ${i===m.i?'on':''}" data-act="opt" data-id="${m.id}" data-i="${i}">${o.short}</button>`).join('')}</div>
+        <div class="lbl">${m.id==='comida'?'Qué lleva tu táper':'Ingredientes'}</div>
+        <div class="itab">${m.ing.map(g=>`<div class="ir"><span class="n">${g[0]}</span><span class="g num">${g[1]}</span>${g[2]?`<span class="h">${g[2]}</span>`:''}</div>`).join('')}</div>
+        ${m.extra?`<div class="extra" style="margin-top:10px">${m.extra}</div>`:''}
+        <div class="lbl">${m.id==='comida'?'Cómo calentarlo':'Cómo se prepara'}</div>
+        <ol class="how">${m.how.map(h=>`<li>${h}</li>`).join('')}</ol>
+        <div class="mf"><div class="mac num"><span>P ${m.p} g</span><span>C ${m.c} g</span><span>G ${m.f} g</span></div>
+        ${m.timer?`<button class="tbtn" data-act="timer" data-s="${m.timer[0]}" data-l="${m.timer[1]}">${ic('timer','sm')} ${Math.round(m.timer[0]/60)} min</button>`:''}</div>
+      </div>`:''}
+    </article>`;
+  });
+  html+=`
+  <div class="sec"><h2>Esta noche</h2></div>
+  <div class="card rem">
+    <div class="mic ${fr?'c-g':'c-b'}">${ic(fr?'fridge':'snow')}</div>
+    <p>${fr?`Listo: el táper de <b>${tmMeal.x.short.toLowerCase()}</b> ya está en la nevera para mañana.`:`Antes de dormir, pasa a la nevera el táper de <b>${tmMeal.x.short.toLowerCase()}</b> para comer mañana.`}</p>
+    <button class="rbtn ${fr?'ok':''}" data-act="fridge" data-d="${tm}">${fr?'Hecho ✓':'Ya lo he hecho'}</button>
+  </div>
+  <div class="card">
+    <div class="water"><div><h4>Agua</h4><small class="num">${(water*.25).toFixed(2).replace('.',',')} de 2 litros · cada vaso son 250 ml</small></div><span class="chip ${water>=8?'g':''}">${water}/8</span></div>
+    <div class="glasses">${Array.from({length:8},(_,i)=>`<button class="gl ${i<water?'on':''}" data-act="water" data-n="${i+1}" aria-label="Vaso ${i+1}">${ic('drop')}</button>`).join('')}</div>
+  </div>`;
+  document.getElementById('v-hoy').innerHTML=html;
+}
+
+/* ---------- SEMANA ---------- */
+function renderSemana(){
+  const d=parse(U.sel),mon=monday(d),sun=addD(mon,6),k=wk(d),mi=menuIdx(d),M=MENUS[mi],ov=S.menuOv[k]!=null,t0=todayISO();
+  const off=Math.round((mon-monday(new Date()))/(7*DAY));
+  const lbl=off===0?'Esta semana':off===1?'La semana que viene':off===-1?'La semana pasada':(off>0?`Dentro de ${off} semanas`:`Hace ${-off} semanas`);
+  let full=0,kc=0,nd=0;
+  let rows='';
+  for(let i=0;i<7;i++){const x=addD(mon,i),xs=iso(x),ms=plan(xs),n=doneCount(xs);
+    if(n>=3)full++; if(n>0){nd++;kc+=totals(ms).k}
+    rows+=`<button class="drow ${xs===t0?'today':''}" data-act="goday" data-d="${xs}">
+      <div class="dnum"><small>${DS[i]}</small><b class="num">${x.getDate()}</b></div>
+      <div class="dinfo"><div><span>Comida:</span> ${ms[2].x.short}</div><div><span>Cena:</span> ${ms[3].x.short}</div></div>
+      <div class="dots">${ms.map(m=>`<i class="${m.done?'on':''}"></i>`).join('')}</div>
+    </button>`}
+  document.getElementById('v-semana').innerHTML=`
+  <div class="wnav">
+    <button class="ibtn" data-act="week" data-n="-7" aria-label="Semana anterior">${ic('l')}</button>
+    <div style="text-align:center"><div class="eyebrow">${lbl}</div><div class="dtitle">${mon.getDate()} ${MES[mon.getMonth()].slice(0,3)} – ${sun.getDate()} ${MES[sun.getMonth()].slice(0,3)}</div></div>
+    <button class="ibtn" data-act="week" data-n="7" aria-label="Semana siguiente">${ic('r')}</button>
+  </div>
+  <div class="stat3">
+    <div class="st"><small>Días cumplidos</small><b class="num">${full}<span> / 7</span></b></div>
+    <div class="st"><small>Media diaria</small><b class="num">${nd?Math.round(kc/nd):'—'}<span> kcal</span></b></div>
+    <div class="st"><small>Coste aprox.</small><b class="num">${Math.round(shopCost(k).real)}<span> €</span></b></div>
+  </div>
+  <div class="card">
+    <div class="eyebrow">Menú de la semana · ${ov?'elegido por ti':'rotación automática'}</div>
+    <div style="font-size:19px;font-weight:800;letter-spacing:-.02em;margin-top:3px">${M.name}</div>
+    <p class="muted" style="margin:6px 0 0;font-size:13.5px">Los menús rotan solos cada semana para que no te canses. Si te apetece otro, elígelo aquí: cambian las recetas del domingo y la lista de la compra.</p>
+    <div class="menus">${MENUS.map((x,i)=>`<button class="mc ${i===mi?'on':''}" data-act="menu" data-i="${i}"><small>${x.tag}</small><b>${x.name}</b><span>${x.o1.short} · ${x.o2.short}</span></button>`).join('')}</div>
+    ${ov?`<div style="margin-top:10px;text-align:center"><button class="chip" data-act="menuAuto">Volver a la rotación automática</button></div>`:''}
+  </div>
+  <div class="sec"><h2>Día a día</h2><span class="muted" style="font-size:12.5px;font-weight:600">Toca un día para verlo</span></div>
+  <div class="card" style="padding:4px 14px">${rows}</div>`;
+}
+
+/* ---------- COCINAR ---------- */
+function renderCocinar(){
+  const base=addD(monday(new Date()),7*U.cookOff),k=iso(base),M=MENUS[menuIdx(base)],sunBefore=addD(base,-1),t0=todayISO();
+  const recipe=(o,id,serv,days)=>{
+    const open=U.openRec===id,got=o.batch.filter((_,i)=>S.ing[`${k}|${id}|${i}`]).length;
+    return `<div class="card">
+      <div class="rhead" data-act="rec" data-id="${id}">
+        <div class="mic ${id==='o1'?'c-g':'c-o'}">${ic('bowl')}</div>
+        <div style="flex:1;min-width:0"><small>Olla ${id==='o1'?1:2} · ${serv} táperes · ${days}</small><h3>${o.name}</h3><small class="num">${o.k} kcal · ${o.p} g proteína por táper</small></div>
+        <span class="rot ${open?'on':''}">${ic('d')}</span>
+      </div>
+      ${open?`
+      <div class="lbl">Ingredientes para la olla <span style="color:var(--g)">${got}/${o.batch.length}</span></div>
+      ${o.batch.map((g,i)=>{const on=!!S.ing[`${k}|${id}|${i}`];return `<button class="ck ${on?'on':''}" data-act="ing" data-k="${k}|${id}|${i}"><span class="box">${ic('check')}</span><span class="t"><b>${g[0]}</b>${g[2]?`<span>${g[2]}</span>`:''}</span><span class="q num">${g[1]}</span></button>`}).join('')}
+      <div class="lbl">Pasos</div>
+      ${o.steps.map((st,i)=>`<div class="step"><span class="sn">${i+1}</span><div style="flex:1">${st[0]}${st[1]?`<div style="margin-top:8px"><button class="tbtn" data-act="timer" data-s="${st[1]}" data-l="${st[2]}">${ic('play','sm')} Temporizador ${Math.round(st[1]/60)} min</button></div>`:''}</div></div>`).join('')}
+      <div class="lbl">Cada táper lleva</div>
+      <div class="itab">${o.portion.map(g=>`<div class="ir"><span class="n">${g[0]}</span><span class="g num">${g[1]}</span><span class="h">${g[2]}</span></div>`).join('')}</div>`:''}
+    </div>`};
+  let tups='';
+  for(let i=0;i<7;i++){const x=addD(base,i),xs=iso(x),m=plan(xs)[2],ea=!!(S.days[xs]&&S.days[xs].done&&S.days[xs].done.comida),fr=!!S.fridge[xs];
+    const st=ea?'ea':fr?'fr':'fz';
+    tups+=`<button class="tup ${st}" data-act="tup" data-d="${xs}"><small>${DS[i]}</small><span class="ti">${ic(ea?'check':fr?'fridge':'snow')}</span><em>${m.i===0?'Olla 1':'Olla 2'}</em></button>`}
+  document.getElementById('v-cocinar').innerHTML=`
+  <div class="seg"><button class="${U.cookOff===0?'on':''}" data-act="cookOff" data-n="0">Esta semana</button><button class="${U.cookOff===1?'on':''}" data-act="cookOff" data-n="1">Próxima semana</button></div>
+  <section class="chero">
+    <small>Domingo ${sunBefore.getDate()} de ${MES[sunBefore.getMonth()]}${iso(sunBefore)===t0?' · hoy':''}</small>
+    <h3>${M.name}</h3>
+    <div class="row"><span class="pill">${ic('timer','sm')} ~60 min</span><span class="pill">${ic('bowl','sm')} 7 táperes</span><span class="pill">2 ollas a la vez</span></div>
+  </section>
+  <div class="sec"><h2>Plan de la hora</h2></div>
+  <div class="card tl">
+    <div class="tli"><span class="tm">0′</span><p><b>Prepara todo.</b> Saca ingredientes, lava legumbres y pica cebollas y zanahorias para las dos ollas de golpe.</p></div>
+    <div class="tli"><span class="tm">10′</span><p><b>Olla 1:</b> ${M.o1.short}. Dora, sofríe y déjala cociendo con su temporizador.</p></div>
+    <div class="tli"><span class="tm">20′</span><p><b>Olla 2:</b> ${M.o2.short}. Mientras la primera se hace sola, monta la segunda.</p></div>
+    <div class="tli"><span class="tm">45′</span><p><b>Táperes.</b> Coloca 7 táperes y apunta el día en la tapa (L, M, J, S para la olla 1; X, V, D para la olla 2).</p></div>
+    <div class="tli"><span class="tm">55′</span><p><b>Reparte y enfría.</b> Deja templar 30 min destapados. El del lunes a la nevera; el resto, al congelador.</p></div>
+  </div>
+  <div class="sec"><h2>Recetas</h2></div>
+  ${recipe(M.o1,'o1',4,'L · M · J · S')}
+  ${recipe(M.o2,'o2',3,'X · V · D')}
+  <div class="sec"><h2>Tus táperes</h2><span class="muted" style="font-size:12.5px;font-weight:600">Toca para cambiar</span></div>
+  <div class="card">
+    <div class="tups">${tups}</div>
+    <div class="legend"><span><i style="background:var(--b)"></i>Congelador</span><span><i style="background:var(--o)"></i>Nevera</span><span><i style="background:var(--g)"></i>Comido</span></div>
+    <div class="tip">${ic('info','sm')}<span>Se actualizan solos: al marcar la comida en <b>Hoy</b> el táper pasa a «comido», y al confirmar el aviso de la noche, a «nevera».</span></div>
+  </div>
+  <div class="sec"><h2>Trucos de congelador</h2></div>
+  <div class="card" style="font-size:14px;color:var(--ink2)">
+    <div class="ck" style="cursor:default"><span class="mic c-b" style="width:34px;height:34px;border-radius:11px">${ic('snow','sm')}</span><span class="t"><b>Aguantan 3 meses</b><span>Legumbres, guisos y arroces congelan perfecto. Etiqueta siempre el día.</span></span></div>
+    <div class="ck" style="cursor:default"><span class="mic c-o" style="width:34px;height:34px;border-radius:11px">${ic('drop','sm')}</span><span class="t"><b>Mejor algo caldosos</b><span>Al congelar pierden agua; así no quedan secos al recalentar.</span></span></div>
+    <div class="ck" style="cursor:default"><span class="mic c-r" style="width:34px;height:34px;border-radius:11px">${ic('x','sm')}</span><span class="t"><b>No congeles patata cocida</b><span>Queda harinosa. Por eso la patata va siempre en las cenas, hecha al momento.</span></span></div>
+  </div>`;
+}
+
+/* ---------- COMPRA ---------- */
+function shopItems(k){const M=MENUS[menuIdx(parse(k))];const m=new Map();[...BASE_SHOP,...M.shop].forEach(x=>{if(!m.has(x.id))m.set(x.id,x)});return [...m.values()].concat((S.custom[k]||[]).map(c=>({id:c.id,n:c.n,q:'Añadido por ti',p:0,a:'otros',u:0,custom:1})))}
+function shopCost(k){const it=shopItems(k);return{real:it.reduce((a,x)=>a+x.p*x.u,0),ticket:it.reduce((a,x)=>a+x.p,0)}}
+function renderCompra(){
+  const base=addD(monday(new Date()),7*U.shopOff),k=iso(base),M=MENUS[menuIdx(base)],items=shopItems(k),chk=S.shop[k]||{};
+  const nDone=items.filter(x=>chk[x.id]).length,cost=shopCost(k),pending=items.filter(x=>!chk[x.id]).reduce((a,x)=>a+x.p,0);
+  let groups='';
+  AISLES.forEach(([a,label,icn,col])=>{
+    let list=items.filter(x=>x.a===a);if(S.hideDone)list=list.filter(x=>!chk[x.id]);
+    if(!list.length&&a!=='otros')return;
+    groups+=`<div class="card aisle"><h3><span class="mic ${col}">${ic(icn)}</span>${label}<small>${list.filter(x=>!chk[x.id]).length} pendientes</small></h3>
+      ${list.map(x=>`<div style="display:flex;align-items:center;gap:4px"><button class="ck ${chk[x.id]?'on':''}" data-act="shop" data-k="${k}" data-id="${x.id}"><span class="box">${ic('check')}</span><span class="t"><b>${x.n}${x.d?'<span class="dtag">Despensa</span>':''}</b><span>${x.q}</span></span>${x.custom?'':`<span class="q num">${eur(x.p)}</span>`}</button>${x.custom?`<button class="del" data-act="delCustom" data-k="${k}" data-id="${x.id}" aria-label="Borrar">${ic('trash','sm')}</button>`:''}</div>`).join('')}
+      ${a==='otros'?`<form class="addrow" data-form="custom" data-k="${k}"><input class="inp" name="n" placeholder="Añadir algo más (café, papel…)" autocomplete="off"><button class="btn" type="submit" aria-label="Añadir">${ic('plus')}</button></form>`:''}
+    </div>`});
+  document.getElementById('v-compra').innerHTML=`
+  <div class="seg"><button class="${U.shopOff===0?'on':''}" data-act="shopOff" data-n="0">Esta semana</button><button class="${U.shopOff===1?'on':''}" data-act="shopOff" data-n="1">Próxima semana</button></div>
+  <div class="card">
+    <div class="eyebrow">${M.name}</div>
+    <div class="shop-sum" style="margin-top:8px">
+      <div><div class="big num">${eur(pending)}</div><div class="muted" style="font-size:13px;font-weight:600;margin-top:4px">por comprar · ticket completo ${eur(cost.ticket)}</div></div>
+      <div style="text-align:right"><div style="font-size:20px;font-weight:800;color:var(--g)" class="num">${nDone}/${items.length}</div><div class="muted" style="font-size:12px;font-weight:600">en el carro</div></div>
+    </div>
+    <div class="pbar"><i style="width:${items.length?Math.round(nDone/items.length*100):0}%"></i></div>
+    <div class="tip" style="margin-top:0;background:var(--ys)">${ic('info','sm')}<span>Lo que de verdad gastas a la semana son <b>${eur(cost.real)}</b>: lo marcado como <b>Despensa</b> te dura varias semanas, así que revisa antes si ya lo tienes.</span></div>
+    <div style="display:flex;gap:8px;margin-top:12px">
+      <button class="btn ghost" style="flex:1" data-act="shareShop" data-k="${k}">${ic('share','sm')} Compartir lista</button>
+      <button class="btn ghost" style="flex:1" data-act="hideDone">${S.hideDone?'Ver todo':'Ocultar comprado'}</button>
+    </div>
+  </div>
+  ${groups}
+  <p class="muted" style="font-size:12.5px;text-align:center;margin:14px 10px 0">Precios orientativos de marca blanca (Mercadona, Lidl, Aldi). Se da por hecho que tienes aceite de oliva, sal y especias básicas.</p>`;
+}
+
+/* ---------- PROGRESO ---------- */
+function streak(){let d=new Date();if(doneCount(iso(d))<3)d=addD(d,-1);let n=0;while(doneCount(iso(d))>=3){n++;d=addD(d,-1)}return n}
+function renderProgreso(){
+  const y=U.calY,m=U.calM,pre=`${y}-${pad(m+1)}-`,t0=todayISO();
+  const all=Object.keys(S.days).filter(s=>doneCount(s)>=3);
+  const monthN=all.filter(s=>s.startsWith(pre)).length;
+  const fat=all.length*500/7700;
+  const first=new Date(y,m,1),off=dow(first),nd=new Date(y,m+1,0).getDate();
+  let cal=DS.map(x=>`<span class="dw">${x[0]}</span>`).join('');
+  for(let i=0;i<off;i++)cal+='<span class="cd x"></span>';
+  for(let i=1;i<=nd;i++){const s=`${pre}${pad(i)}`,n=doneCount(s);cal+=`<button class="cd ${n>=3?'full':n>0?'part':''} ${s===t0?'today':''} ${s>t0?'fut':''}" data-act="goday" data-d="${s}">${i}</button>`}
+  const W=[...S.weights].sort((a,b)=>a.d<b.d?-1:1);
+  const last=W.length?W[W.length-1].kg:null,firstW=W.length?W[0].kg:null;
+  let eta='';
+  if(last!=null&&S.goal){const left=last-S.goal;eta=left<=0?`¡Has alcanzado tu meta de ${kg(S.goal)} kg! 🎉`:`Te faltan ${kg(left)} kg. A un ritmo sano de ~0,5 kg por semana, llegarías en unas <b>${Math.ceil(left/.5)} semanas</b>.`}
+  document.getElementById('v-progreso').innerHTML=`
+  <div class="stat3" style="margin-top:4px">
+    <div class="st"><small>Racha</small><b class="num">${streak()}<span> días</span></b></div>
+    <div class="st"><small>Este mes</small><b class="num">${monthN}<span> días</span></b></div>
+    <div class="st"><small>Grasa estimada</small><b class="num">−${kg(fat)}<span> kg</span></b></div>
+  </div>
+  <div class="card">
+    <div class="wnav" style="margin:0 0 12px">
+      <button class="ibtn" data-act="cal" data-n="-1" aria-label="Mes anterior">${ic('l')}</button>
+      <div class="dtitle">${MES[m]} ${y}</div>
+      <button class="ibtn" data-act="cal" data-n="1" aria-label="Mes siguiente">${ic('r')}</button>
+    </div>
+    <div class="cal">${cal}</div>
+    <div class="legend"><span><i style="background:var(--g)"></i>Día cumplido (3+ comidas)</span><span><i style="background:var(--o)"></i>A medias</span></div>
+  </div>
+  <div class="sec"><h2>Peso</h2><button class="lnk" data-act="goal">${S.goal?`Meta: ${kg(S.goal)} kg`:'Fijar meta'}</button></div>
+  <div class="card">
+    <form class="addrow" data-form="weight" style="margin-top:0"><input class="inp num" name="kg" type="number" inputmode="decimal" step="0.1" min="30" max="300" placeholder="Peso de hoy en ayunas (kg)"><button class="btn" type="submit">Guardar</button></form>
+    ${W.length?`
+      <div style="display:flex;justify-content:space-between;margin:14px 2px 4px;font-size:13px;font-weight:650" class="muted"><span>Inicio: <b style="color:var(--ink)" class="num">${kg(firstW)} kg</b></span><span>Ahora: <b style="color:var(--ink)" class="num">${kg(last)} kg</b></span><span>Cambio: <b style="color:${last<=firstW?'var(--g)':'var(--r)'}" class="num">${last-firstW>0?'+':''}${kg(last-firstW)}</b></span></div>
+      ${chart(W)}
+      ${eta?`<div class="eta">${eta}</div>`:''}
+      <div style="margin-top:8px">${W.slice(-6).reverse().map(w=>{const dd=parse(w.d);return `<div class="wl"><span class="muted">${dd.getDate()} ${MES[dd.getMonth()].slice(0,3)} ${dd.getFullYear()}</span><span style="display:flex;align-items:center;gap:8px"><b class="num">${kg(w.kg)} kg</b><button class="del" data-act="delW" data-d="${w.d}" aria-label="Borrar">${ic('trash','sm')}</button></span></div>`}).join('')}</div>`
+    :`<p class="muted" style="font-size:13.5px;margin:12px 2px 0">Pésate una vez por semana, mismo día y en ayunas. El peso fluctúa a diario por agua; lo que importa es la tendencia.</p>`}
+  </div>
+  <div class="sec"><h2>Ajustes</h2></div>
+  <div class="card" style="padding:4px 16px">
+    <div class="setrow"><div><b>Tema</b><span>Automático sigue a tu iPhone</span></div>
+      <div class="seg"><button class="${S.theme==='auto'?'on':''}" data-act="setTheme" data-t="auto">Auto</button><button class="${S.theme==='light'?'on':''}" data-act="setTheme" data-t="light">Claro</button><button class="${S.theme==='dark'?'on':''}" data-act="setTheme" data-t="dark">Oscuro</button></div></div>
+    <div class="setrow"><div><b>Copia de seguridad</b><span>Guarda tu historial en un archivo</span></div><div style="display:flex;gap:6px"><button class="ibtn" data-act="export" aria-label="Exportar">${ic('down')}</button><button class="ibtn" data-act="import" aria-label="Importar">${ic('up')}</button></div></div>
+    <div class="setrow"><div><b>Guía de uso</b><span>Cómo funciona, medidas y trucos</span></div><button class="ibtn" data-act="guide" aria-label="Abrir guía">${ic('r')}</button></div>
+    <div class="setrow"><div><b style="color:var(--r)">Borrar todo</b><span>Empieza de cero</span></div><button class="ibtn" style="color:var(--r)" data-act="wipe" aria-label="Borrar todo">${ic('trash')}</button></div>
+  </div>`;
+}
+function chart(W){
+  const pts=W.slice(-12),vals=pts.map(w=>w.kg).concat(S.goal?[S.goal]:[]);
+  const mn=Math.min(...vals)-.6,mx=Math.max(...vals)+.6,w=340,h=150,px=20,py=22;
+  const X=i=>pts.length===1?w/2:px+i*(w-2*px)/(pts.length-1),Y=v=>py+(mx-v)/(mx-mn)*(h-2*py);
+  const line=pts.map((p,i)=>`${X(i).toFixed(1)},${Y(p.kg).toFixed(1)}`).join(' ');
+  const area=`M${X(0).toFixed(1)},${h} L${line.replace(/ /g,' L')} L${X(pts.length-1).toFixed(1)},${h} Z`;
+  const gy=S.goal?Y(S.goal):null;
+  return `<svg class="chart" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none">
+    <defs><linearGradient id="ga" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--g)" stop-opacity=".25"/><stop offset="1" stop-color="var(--g)" stop-opacity="0"/></linearGradient></defs>
+    ${gy!=null?`<line x1="0" x2="${w}" y1="${gy}" y2="${gy}" stroke="var(--b)" stroke-width="1.5" stroke-dasharray="5 5"/><text x="${w-4}" y="${gy-6}" text-anchor="end" font-size="11" font-weight="700" fill="var(--b)">Meta ${kg(S.goal)}</text>`:''}
+    ${pts.length>1?`<path d="${area}" fill="url(#ga)"/><polyline points="${line}" fill="none" stroke="var(--g)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>`:''}
+    ${pts.map((p,i)=>`<circle cx="${X(i)}" cy="${Y(p.kg)}" r="4.5" fill="var(--card)" stroke="var(--g)" stroke-width="2.5"/>`).join('')}
+  </svg>`;
+}
+
+/* ---------- GUÍA ---------- */
+function openGuide(){
+  document.getElementById('sheet').innerHTML=`<div class="grab"></div>
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px"><div><div class="eyebrow">Guía</div><h2>Cómo funciona Táper</h2></div><button class="ibtn" data-act="closeSheet" aria-label="Cerrar">${ic('x')}</button></div>
+  <div class="card" style="margin-top:14px"><h3>Tu rutina en 3 gestos</h3>
+    <div class="tl" style="margin-top:10px">
+      <div class="tli"><span class="tm">Dom</span><p><b>Cocinas 1 hora.</b> En <b>Cocinar</b> tienes el plan minuto a minuto, las 2 recetas y los temporizadores. Salen 7 comidas.</p></div>
+      <div class="tli"><span class="tm">Día</span><p><b>Marcas lo que comes.</b> En <b>Hoy</b> se resalta la comida que toca. Si no te apetece, cambia de opción: las calorías son equivalentes.</p></div>
+      <div class="tli"><span class="tm">Noche</span><p><b>Pasas el táper de mañana a la nevera</b> y confirmas el aviso. Así se descongela solo.</p></div>
+    </div></div>
+  <div class="card"><h3>Por qué funciona</h3><ul>
+    <li>Unas 1.150–1.200 kcal con <b>~100 g de proteína</b> al día: pierdes grasa sin perder músculo y sin pasar hambre.</li>
+    <li>Mucho volumen (verdura, legumbre, guisos caldosos) por pocas calorías.</li>
+    <li>Las decisiones ya están tomadas: comes lo que hay en el táper.</li></ul></div>
+  <div class="card" style="background:var(--os)"><h3 style="color:var(--o)">Escúchate</h3><ul>
+    <li>1.200 kcal es un mínimo. Si entrenas, activa <b>«¿Entrenas hoy?»</b> (+145 kcal).</li>
+    <li>Si notas mareos, cansancio fuerte o mucha hambre varios días, sube a 1.400–1.500 kcal añadiendo una fruta y algo más de avena.</li>
+    <li>Si tienes alguna condición médica, embarazo o tomas medicación, consúltalo antes con tu médico o nutricionista.</li></ul></div>
+  <div class="card"><h3>Medidas sin báscula</h3><table class="gtbl">
+    <tr><td>35 g de avena</td><td>3 cucharadas soperas colmadas</td></tr>
+    <tr><td>200 g de queso batido</td><td>4 cucharadas colmadas (≈ 2/5 de tarrina)</td></tr>
+    <tr><td>60 g de lenteja seca</td><td>1 taza de café llena</td></tr>
+    <tr><td>50 g de arroz seco</td><td>1 taza de café rasa</td></tr>
+    <tr><td>5 ml de aceite</td><td>1 cucharilla de postre</td></tr>
+    <tr><td>10 ml de aceite</td><td>1 cucharada sopera</td></tr>
+    <tr><td>300 g de verdura congelada</td><td>Media bolsa / un plato lleno</td></tr>
+    <tr><td>125–150 g de pollo</td><td>La palma de tu mano, de grosor un dedo</td></tr></table></div>
+  <div class="card"><h3>Cambios que puedes hacer</h3><table class="gtbl">
+    <tr><td>Mandarinas</td><td>Manzana, pera, 2 kiwis o 1 plátano pequeño</td></tr>
+    <tr><td>Queso batido 0 %</td><td>Skyr natural o yogur alto en proteína</td></tr>
+    <tr><td>Merluza</td><td>Bacalao, abadejo, panga o 2 latas de atún</td></tr>
+    <tr><td>Pechuga de pollo</td><td>Pechuga de pavo o lomo de cerdo magro</td></tr>
+    <tr><td>Brócoli</td><td>Coliflor, judías verdes, espinacas o menestra</td></tr></table></div>
+  <div class="card"><h3>Contra el hambre</h3><ul>
+    <li><b>Mide el aceite.</b> Una cucharada de más son 90 kcal que no sacian nada.</li>
+    <li><b>Nada de calorías líquidas:</b> agua, café e infusiones sin azúcar.</li>
+    <li><b>¿Hambre por la noche?</b> 200 g más de verdura al micro o un caldo: menos de 50 kcal.</li></ul></div>
+  <div class="card"><h3>Tenerla en tu iPhone como app</h3><ul>
+    <li>Abre la web en <b>Safari</b>.</li>
+    <li>Toca <b>Compartir</b> → <b>Añadir a pantalla de inicio</b>.</li>
+    <li>Tus datos se guardan en el propio iPhone. Haz una copia de seguridad de vez en cuando desde <b>Progreso → Ajustes</b>.</li></ul></div>`;
+  document.getElementById('sheet').classList.add('on');document.getElementById('ov').classList.add('on');
+}
+function closeSheet(){document.getElementById('sheet').classList.remove('on');document.getElementById('ov').classList.remove('on')}
+
+/* ---------- Temporizador ---------- */
+let tInt=null,beeped=false;
+function beep(){try{const A=window.AudioContext||window.webkitAudioContext;if(!A)return;const ac=new A();[0,.35,.7].forEach(o=>[880,1175].forEach((f,j)=>{const os=ac.createOscillator(),g=ac.createGain();os.type='sine';os.frequency.value=f;const t=ac.currentTime+o+j*.12;g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.25,t+.02);g.gain.exponentialRampToValueAtTime(.0001,t+.25);os.connect(g);g.connect(ac.destination);os.start(t);os.stop(t+.3)}))}catch(e){}if(navigator.vibrate)navigator.vibrate([200,100,200])}
+function tLeft(){const T=S.timer;if(!T)return 0;return T.run?Math.max(0,T.end-Date.now()):T.left}
+function startTimer(sec,label){S.timer={label,run:true,end:Date.now()+sec*1000,left:sec*1000};beeped=false;save();tickTimer();toast(`Temporizador: ${label} · ${Math.round(sec/60)} min`)}
+function tickTimer(){
+  const el=document.getElementById('timer'),T=S.timer;
+  if(!T){el.classList.remove('on');clearInterval(tInt);tInt=null;return}
+  const ms=tLeft(),s=Math.ceil(ms/1000);
+  el.classList.add('on');el.classList.toggle('end',s<=0);
+  document.getElementById('tClock').textContent=s<=0?'¡Listo!':`${pad(Math.floor(s/60))}:${pad(s%60)}`;
+  document.getElementById('tLabel').textContent=T.label;
+  document.getElementById('tPause').innerHTML=ic(T.run&&s>0?'pause':'play','sm');
+  if(s<=0&&T.run&&!beeped){beeped=true;beep();toast(`¡${T.label} listo!`)}
+  if(!tInt)tInt=setInterval(tickTimer,500);
+}
+
+/* ---------- Render ---------- */
+const SUB={hoy:'Plan 1.200 kcal',semana:'Tu semana',cocinar:'Batch cooking del domingo',compra:'Lista de la compra',progreso:'Tu progreso'};
+function render(){
+  document.querySelectorAll('.view').forEach(v=>v.classList.toggle('on',v.id==='v-'+U.tab));
+  document.querySelectorAll('.nb').forEach(b=>b.classList.toggle('on',b.dataset.tab===U.tab));
+  document.getElementById('tsub').textContent=SUB[U.tab];
+  ({hoy:renderHoy,semana:renderSemana,cocinar:renderCocinar,compra:renderCompra,progreso:renderProgreso})[U.tab]();
+}
+function go(tab){U.tab=tab;render();window.scrollTo({top:0,behavior:'instant'in window?'instant':'auto'})}
+
+/* ---------- Eventos ---------- */
+document.addEventListener('click',e=>{
+  const nb=e.target.closest('.nb');if(nb){go(nb.dataset.tab);return}
+  const el=e.target.closest('[data-act]');if(!el)return;
+  const a=el.dataset.act,ds=el.dataset;
+  switch(a){
+    case 'pick':U.sel=ds.d;U.open=null;break;
+    case 'day':U.sel=iso(addD(parse(U.sel),+ds.n));U.open=null;break;
+    case 'today':U.sel=todayISO();U.open=null;break;
+    case 'open':U.open=(U.open===ds.id||(U.open===null&&el.closest('.meal').querySelector('.mb')))?'none':ds.id;break;
+    case 'done':{const r=dayRec(U.sel);r.done[ds.id]=!r.done[ds.id];save();if(r.done[ds.id]){toast('¡Hecho! Bien ahí 💪');U.open=null}break}
+    case 'opt':{const r=dayRec(U.sel);r.sel[ds.id]=+ds.i;save();U.open=ds.id;break}
+    case 'wo':{const r=dayRec(U.sel);r.wo=!r.wo;save();break}
+    case 'water':{const r=dayRec(U.sel);r.water=r.water===+ds.n?+ds.n-1:+ds.n;save();break}
+    case 'fridge':S.fridge[ds.d]=!S.fridge[ds.d];save();break;
+    case 'timer':startTimer(+ds.s,ds.l);return;
+    case 'tab':go(ds.t);return;
+    case 'goday':U.sel=ds.d;U.open=null;go('hoy');return;
+    case 'week':U.sel=iso(addD(parse(U.sel),+ds.n));break;
+    case 'menu':S.menuOv[wk(parse(U.sel))]=+ds.i;save();toast('Menú cambiado: recetas y compra actualizadas');break;
+    case 'menuAuto':delete S.menuOv[wk(parse(U.sel))];save();break;
+    case 'cookOff':U.cookOff=+ds.n;break;
+    case 'rec':U.openRec=U.openRec===ds.id?null:ds.id;break;
+    case 'ing':S.ing[ds.k]=!S.ing[ds.k];if(!S.ing[ds.k])delete S.ing[ds.k];save();break;
+    case 'tup':{const s=ds.d,r=dayRec(s),ea=!!r.done.comida,fr=!!S.fridge[s];
+      if(!ea&&!fr)S.fridge[s]=true;else if(fr&&!ea){r.done.comida=true}else{r.done.comida=false;delete S.fridge[s]}save();break}
+    case 'shopOff':U.shopOff=+ds.n;break;
+    case 'shop':{S.shop[ds.k]??={};S.shop[ds.k][ds.id]=!S.shop[ds.k][ds.id];save();break}
+    case 'delCustom':S.custom[ds.k]=(S.custom[ds.k]||[]).filter(x=>x.id!==ds.id);save();break;
+    case 'hideDone':S.hideDone=!S.hideDone;save();break;
+    case 'shareShop':{const k=ds.k,chk=S.shop[k]||{},it=shopItems(k).filter(x=>!chk[x.id]);
+      const txt='🛒 Compra de la semana\n\n'+AISLES.map(([id,l])=>{const g=it.filter(x=>x.a===id);return g.length?`${l}\n`+g.map(x=>`• ${x.n} (${x.q})`).join('\n'):''}).filter(Boolean).join('\n\n');
+      if(navigator.share)navigator.share({title:'Lista de la compra',text:txt}).catch(()=>{});
+      else if(navigator.clipboard)navigator.clipboard.writeText(txt).then(()=>toast('Lista copiada')).catch(()=>toast('No se pudo copiar'));return}
+    case 'cal':{U.calM+=+ds.n;if(U.calM<0){U.calM=11;U.calY--}if(U.calM>11){U.calM=0;U.calY++}break}
+    case 'goal':{const v=prompt('¿Cuál es tu peso objetivo? (kg)',S.goal?String(S.goal).replace('.',','):'');if(v===null)return;const n=parseFloat(v.replace(',','.'));if(n>=30&&n<=300){S.goal=Math.round(n*10)/10;save()}break}
+    case 'delW':S.weights=S.weights.filter(w=>w.d!==ds.d);save();break;
+    case 'setTheme':S.theme=ds.t;save();applyTheme();break;
+    case 'theme':S.theme=S.theme==='auto'?'light':S.theme==='light'?'dark':'auto';save();applyTheme();toast(S.theme==='auto'?'Tema automático':S.theme==='light'?'Tema claro':'Tema oscuro');if(U.tab!=='progreso')return;break;
+    case 'export':{const b=new Blob([JSON.stringify(S,null,1)],{type:'application/json'}),u=URL.createObjectURL(b),l=document.createElement('a');l.href=u;l.download=`taper-copia-${todayISO()}.json`;document.body.appendChild(l);l.click();l.remove();setTimeout(()=>URL.revokeObjectURL(u),2000);toast('Copia descargada');return}
+    case 'import':document.getElementById('fileIn').click();return;
+    case 'wipe':if(confirm('¿Seguro que quieres borrar todo tu historial? No se puede deshacer.')){S={};fix();save();toast('Datos borrados')}break;
+    case 'guide':openGuide();return;
+    case 'closeSheet':closeSheet();return;
+    case 'tplus':if(S.timer){if(S.timer.run){S.timer.end=Math.max(S.timer.end,Date.now())+60000}else S.timer.left+=60000;beeped=false;save();tickTimer()}return;
+    case 'tpause':{const T=S.timer;if(!T)return;if(tLeft()<=0){T.left=60000;T.run=true;T.end=Date.now()+60000;beeped=false}else if(T.run){T.left=T.end-Date.now();T.run=false}else{T.end=Date.now()+T.left;T.run=true}save();tickTimer();return}
+    case 'tclose':S.timer=null;save();tickTimer();return;
+  }
+  if(U.open==='none')U.open='__none__';
+  render();
+});
+document.addEventListener('submit',e=>{
+  const f=e.target.closest('[data-form]');if(!f)return;e.preventDefault();
+  if(f.dataset.form==='custom'){const v=f.n.value.trim();if(!v)return;const k=f.dataset.k;(S.custom[k]??=[]).push({id:'c'+Date.now(),n:v});save();render();const i=document.querySelector('[data-form=custom] input');i&&i.focus()}
+  if(f.dataset.form==='weight'){const n=parseFloat(String(f.kg.value).replace(',','.'));if(!(n>=30&&n<=300)){toast('Escribe un peso válido');return}const d=todayISO();S.weights=S.weights.filter(w=>w.d!==d);S.weights.push({d,kg:Math.round(n*10)/10});save();toast('Peso guardado');render()}
+});
+document.getElementById('fileIn').addEventListener('change',e=>{const f=e.target.files[0];if(!f)return;const rd=new FileReader();rd.onload=()=>{try{const o=JSON.parse(rd.result);if(o&&typeof o==='object'&&o.days){S=o;fix();save();applyTheme();render();toast('Copia restaurada')}else toast('Ese archivo no es una copia de Táper')}catch(x){toast('No se pudo leer el archivo')}};rd.readAsText(f);e.target.value=''});
+
+/* Si se abre otro día, refresca "hoy" */
+document.addEventListener('visibilitychange',()=>{if(!document.hidden){tickTimer();if(U.tab==='hoy')render()}});
+
+/* Icono de pantalla de inicio */
+try{const c=document.createElement('canvas');c.width=c.height=180;const x=c.getContext('2d');const g=x.createLinearGradient(0,0,180,180);g.addColorStop(0,'#1d7a50');g.addColorStop(1,'#2a9d66');x.fillStyle=g;x.fillRect(0,0,180,180);x.strokeStyle='#fff';x.lineWidth=11;x.lineCap='round';x.lineJoin='round';x.beginPath();x.roundRect?x.roundRect(42,78,96,58,16):x.rect(42,78,96,58);x.stroke();x.beginPath();x.moveTo(34,78);x.lineTo(146,78);x.stroke();x.beginPath();x.moveTo(76,56);x.lineTo(104,56);x.stroke();document.getElementById('apple-icon').href=c.toDataURL('image/png')}catch(e){}
+
+applyTheme();render();tickTimer();
+})();
+</script>
+</body>
+</html>
